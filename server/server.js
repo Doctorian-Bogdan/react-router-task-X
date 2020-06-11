@@ -67,18 +67,22 @@ server.get('/api/v1/tasks/:category/:timespan', async (req, res) => {
 
 server.post('/api/v1/tasks/:category', async (req, res) => {
   const { category } = req.params
-  const newTask = {
-    taskId: shortid.generate(),
-    title: req.body.title,
-    status: 'new',
-    _isDeleted: false,
-    _createdAt: +new Date(),
-    _deletedAt: null
+  if (Object.keys(req.body).length === 0) {
+    await wrFile(category, [])
+  } else {
+    const newTask = {
+      taskId: shortid.generate(),
+      title: req.body.title,
+      status: 'new',
+      _isDeleted: false,
+      _createdAt: +new Date(),
+      _deletedAt: null
+    }
+    const tasks = await rFile(category)
+    const updatedTasks = [...tasks, newTask]
+    await wrFile(category, updatedTasks)
+    res.json({ status: 'success', newTask })
   }
-  const tasks = await rFile(category)
-  const updatedTasks = [...tasks, newTask]
-  await wrFile(category, updatedTasks)
-  res.json(tasks)
 })
 
 server.patch('/api/v1/tasks/:category/:id', async (req, res) => {
