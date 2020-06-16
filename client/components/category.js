@@ -5,6 +5,7 @@ const Category = (props) => {
   const [newCategory, setNewCategory] = React.useState('')
   return (
     <div className="text-center bg-teal-200 border-green-800 border-2 box-border p-10 rounded-md">
+      <p className="font-bold text-2xl text-green-900">Categories:</p>
       {props.categoryList.map((el) => (
         <div className="my-2">
           <Link to={`/${el}`}>{el}</Link>

@@ -161,7 +161,8 @@
   "nodemonConfig": {
     "ignore": [
       "*.hot-update.json",
-      "server/**/*.json"
+      "server/**/*.json",
+      "client"
     ]
   },
   "husky": {

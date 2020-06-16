@@ -56,7 +56,8 @@ server.get('/api/v1/tasks/:category/:timespan', async (req, res) => {
   const periodOfTime = {
     day: 1000 * 60 * 60 * 24,
     week: 7 * 1000 * 60 * 60 * 24,
-    month: 30 * 1000 * 60 * 60 * 24
+    month: 30 * 1000 * 60 * 60 * 24,
+    all: +new Date()
   }
   const filteredTasks = getTasks(
     // eslint-disable-next-line no-underscore-dangle
@@ -89,15 +90,15 @@ server.patch('/api/v1/tasks/:category/:id', async (req, res) => {
   const { id, category } = req.params
   const newStatus = req.body
   const statuses = ['new', 'in progress', 'done', 'blocked']
-  if (statuses.includes(newStatus.status)) {
+  if (!statuses.includes(newStatus.status) && req.body.title === undefined) {
+    res.status(501)
+    res.json({ status: 'error', message: 'incorrect status' })
+  } else {
     const tasks = await rFile(category)
     const newTaskList = tasks.map((el) => (el.taskId === id ? { ...el, ...newStatus } : el))
     await wrFile(category, newTaskList)
     const updatedTask = getTasks(newTaskList.filter((el) => el.taskId === id))
     res.json(...updatedTask)
-  } else {
-    res.status(501)
-    res.json({ status: 'error', message: 'incorrect status' })
   }
 })
 

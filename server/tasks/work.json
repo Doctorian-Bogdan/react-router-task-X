@@ -1,50 +1,18 @@
 [
   {
-    "taskId": "74rxJM2Ly",
-    "title": "qwerty",
-    "status": "new",
-    "_isDeleted": false,
-    "_createdAt": 1590841604035,
+    "taskId": "sJmoFK0gA",
+    "title": "hgddg",
+    "status": "in progress",
+    "_isDeleted": true,
+    "_createdAt": 1572050468354,
     "_deletedAt": null
   },
   {
-    "taskId": "74ixJM2Ly",
-    "title": "hello",
-    "status": "new",
-    "_isDeleted": false,
-    "_createdAt": 1590841605035,
-    "_deletedAt": null
-  },
-  {
-    "taskId": "_rFq8gJCy",
-    "title": "go to sleep pls",
-    "status": "new",
-    "_isDeleted": false,
-    "_createdAt": 1591265502456,
-    "_deletedAt": null
-  },
-  {
-    "taskId": "0n6k3UMsN",
-    "title": "ggg",
-    "status": "new",
-    "_isDeleted": false,
-    "_createdAt": 1591706090704,
-    "_deletedAt": null
-  },
-  {
-    "taskId": "CdHo_OLNG",
-    "title": "gg",
-    "status": "new",
-    "_isDeleted": false,
-    "_createdAt": 1591706093998,
-    "_deletedAt": null
-  },
-  {
-    "taskId": "XdVqD15re",
-    "title": "example",
-    "status": "new",
-    "_isDeleted": false,
-    "_createdAt": 1591706467856,
+    "taskId": "SxtpoF_iQ",
+    "title": "gfge",
+    "status": "in progress",
+    "_isDeleted": true,
+    "_createdAt": 1592050473889,
     "_deletedAt": null
   }
 ]

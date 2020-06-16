@@ -17,6 +17,10 @@ const Home = () => {
     axios(`/api/v1/tasks/${category}`).then(({ data }) => setTaskList(data))
   }, [category])
 
+  const timeFilter = (timespan) => {
+    axios(`/api/v1/tasks/${category}/${timespan}`).then(({ data }) => setTaskList(data))
+  }
+
   const addCategory = (newCategory) => {
     axios.post(`/api/v1/tasks/${newCategory}`)
     setCategoryList([...categoryList, newCategory])
@@ -35,6 +39,12 @@ const Home = () => {
     )
     setTaskList(updateTaskList)
   }
+
+  const updateTitle = (taskname, id) => {
+    axios.patch(`/api/v1/tasks/${category}/${id}`, { title: taskname })
+    const updateTasks = taskList.map((el) => (el.taskId === id ? { ...el, title: taskname } : el))
+    setTaskList(updateTasks)
+  }
   return (
     <div className="h-screen flex items-center justify-center bg-teal-100">
       <Route
@@ -45,7 +55,15 @@ const Home = () => {
       <Route
         exact
         path="/:category"
-        component={() => <TaskList taskList={taskList} addTask={addTask} updateStatus={updateStatus} />}
+        component={() => (
+          <TaskList
+            taskList={taskList}
+            addTask={addTask}
+            updateStatus={updateStatus}
+            updateTitle={updateTitle}
+            timeFilter={timeFilter}
+          />
+        )}
       />
     </div>
   )
